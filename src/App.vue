@@ -1,22 +1,57 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <el-header v-show="isLogin" class="header">
+      <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router v-show="isStudent">
+        <el-menu-item index="1" route="/course">查看课程</el-menu-item>
+        <el-menu-item index="2" route="/transcript">成绩单</el-menu-item>
+        <el-menu-item index="3" route="/home">选课</el-menu-item>
+        <el-menu-item index="4" route="/home">退课</el-menu-item>
+      </el-menu>
+      <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router v-show="isTeacher">
+        <el-menu-item index="1" route="/home">查看课程</el-menu-item>
+        <el-menu-item index="2" route="/">管理课程</el-menu-item>
+        <el-menu-item index="3" route="/home">录入成绩</el-menu-item>
+      </el-menu>
+      <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router v-show="isAdmin">
+        <el-menu-item index="1" route="/home">查看课程</el-menu-item>
+        <el-menu-item index="2" route="/">查看教师信息</el-menu-item>
+        <el-menu-item index="3" route="/home">查看学生信息</el-menu-item>
+        <el-menu-item index="4" route="/home">管理课程</el-menu-item>
+        <el-menu-item index="5" route="/home">管理学生</el-menu-item>
+        <el-menu-item index="6" route="/home">管理教师</el-menu-item>
+      </el-menu>
+    </el-header>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'App',
+  data () {
+    return {
+      isLogin: true,
+      isStudent: true,
+      isTeacher: false,
+      isAdmin: false
+    }
+  }
+}
+</script>
+
 <style lang="stylus">
 #app
+  margin 0
   font-family 'Avenir', Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
 
+.header
+  background-color rgb(84, 92, 100)
+
 #nav
-  padding 30px
   a
     font-weight bold
     color #2c3e50
