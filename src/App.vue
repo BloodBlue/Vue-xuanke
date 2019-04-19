@@ -4,21 +4,19 @@
       <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router v-show="isStudent">
         <el-menu-item index="1" route="/course">查看课程</el-menu-item>
         <el-menu-item index="2" route="/transcript">成绩单</el-menu-item>
-        <el-menu-item index="3" route="/home">选课</el-menu-item>
-        <el-menu-item index="4" route="/home">退课</el-menu-item>
+        <el-menu-item index="3" route="/fastinput">选课</el-menu-item>
+        <el-menu-item index="4" route="/fastdelete">退课</el-menu-item>
       </el-menu>
       <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router v-show="isTeacher">
-        <el-menu-item index="1" route="/home">查看课程</el-menu-item>
+        <el-menu-item index="1" route="/course">查看课程</el-menu-item>
         <el-menu-item index="2" route="/">管理课程</el-menu-item>
         <el-menu-item index="3" route="/home">录入成绩</el-menu-item>
       </el-menu>
       <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router v-show="isAdmin">
-        <el-menu-item index="1" route="/home">查看课程</el-menu-item>
-        <el-menu-item index="2" route="/">查看教师信息</el-menu-item>
-        <el-menu-item index="3" route="/home">查看学生信息</el-menu-item>
+        <el-menu-item index="1" route="/course">查看课程</el-menu-item>
+        <el-menu-item index="2" route="/">管理教师</el-menu-item>
+        <el-menu-item index="3" route="/home">管理学生</el-menu-item>
         <el-menu-item index="4" route="/home">管理课程</el-menu-item>
-        <el-menu-item index="5" route="/home">管理学生</el-menu-item>
-        <el-menu-item index="6" route="/home">管理教师</el-menu-item>
       </el-menu>
     </el-header>
     <router-view/>

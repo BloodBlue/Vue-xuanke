@@ -12,7 +12,7 @@
       </el-table>
     </div>
     <br/>
-    <div id="scoreBar" :style="{width: '400px', height: '300px'}"></div>
+    <div id="scoreBar" :style="{width: '630px', height: '300px'}"></div>
   </div>
 </template>
 

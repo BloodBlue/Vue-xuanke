@@ -16,6 +16,16 @@ export default new Router({
       component: () => import('./views/Transcript.vue')
     },
     {
+      path: '/fastinput',
+      name: 'fastinput',
+      component: () => import('./views/FastInput.vue')
+    },
+    {
+      path: '/fastdelete',
+      name: 'fastdelete',
+      component: () => import('./views/FastDelete.vue')
+    },
+    {
       path: '/login',
       name: 'login',
       // route level code-splitting

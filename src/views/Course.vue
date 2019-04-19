@@ -2,18 +2,18 @@
   <div style="width:100%">
     <div class="course">
       <br/>
-      <div class="search">
+      <div style="width: 700px; margin: 0 auto">
         <el-form ref="serchList" label-width="80px">
           <el-form-item label="课程号" style="float: left">
-            <el-input v-model="searchList.courseId" placeholder="请输入课程号"></el-input>
+            <el-input v-model="searchList.courseId" placeholder="请输入课程号" style="width: 200px"></el-input>
           </el-form-item>
           <el-form-item label="课程名" style="float: left">
-            <el-input v-model="searchList.courseName" placeholder="请输入课程名"></el-input>
+            <el-input v-model="searchList.courseName" placeholder="请输入课程名" style="width: 200px"></el-input>
           </el-form-item>
           <el-button @click="test()">查询</el-button>
         </el-form>
       </div>
-      <el-table :data="CourseData" class="grid" max-height="600" :stripe="true" :border="true">
+      <el-table :data="CourseData" style="width: 700px; margin: 0 auto" max-height="600" :stripe="true" :border="true">
         <el-table-column prop="CourseId" label="课程号" width="100"></el-table-column>
         <el-table-column prop="CourseName" label="课程名" width="150"></el-table-column>
         <el-table-column prop="credit" label="学分" width="100"></el-table-column>
@@ -85,13 +85,6 @@ export default {
 <style lang="stylus">
 .course
   width 700px
-  margin 0 auto
-
-.search
-  width 100%
-  margin 0 auto
-
-.grid
   margin 0 auto
 
 </style>
