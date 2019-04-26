@@ -16,6 +16,16 @@ export default new Router({
       component: () => import('./views/Transcript.vue')
     },
     {
+      path: '/tcourse',
+      name: 'tcourse',
+      component: () => import('./views/TCourse.vue')
+    },
+    {
+      path: '/grade',
+      name: 'grade',
+      component: () => import('./views/Grade.vue')
+    },
+    {
       path: '/fastinput',
       name: 'fastinput',
       component: () => import('./views/FastInput.vue')
@@ -24,6 +34,11 @@ export default new Router({
       path: '/fastdelete',
       name: 'fastdelete',
       component: () => import('./views/FastDelete.vue')
+    },
+    {
+      path: '/cmanage',
+      name: 'cmanage',
+      component: () => import('./views/Cmanage.vue')
     },
     {
       path: '/login',

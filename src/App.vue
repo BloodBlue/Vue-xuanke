@@ -8,15 +8,15 @@
         <el-menu-item index="4" route="/fastdelete">退课</el-menu-item>
       </el-menu>
       <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router v-show="isTeacher">
-        <el-menu-item index="1" route="/course">查看课程</el-menu-item>
-        <el-menu-item index="2" route="/">管理课程</el-menu-item>
-        <el-menu-item index="3" route="/home">录入成绩</el-menu-item>
+        <el-menu-item index="1" route="/tcourse">查看课程</el-menu-item>
+        <el-menu-item index="2" route="/cmanage">管理课程</el-menu-item>
+        <el-menu-item index="3" route="/grade">录入成绩</el-menu-item>
       </el-menu>
       <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router v-show="isAdmin">
         <el-menu-item index="1" route="/course">查看课程</el-menu-item>
         <el-menu-item index="2" route="/">管理教师</el-menu-item>
         <el-menu-item index="3" route="/home">管理学生</el-menu-item>
-        <el-menu-item index="4" route="/home">管理课程</el-menu-item>
+        <el-menu-item index="4" route="/cmanage">管理课程</el-menu-item>
       </el-menu>
     </el-header>
     <router-view/>
@@ -29,9 +29,9 @@ export default {
   data () {
     return {
       isLogin: true,
-      isStudent: true,
+      isStudent: false,
       isTeacher: false,
-      isAdmin: false
+      isAdmin: true
     }
   }
 }
