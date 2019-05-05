@@ -14,8 +14,8 @@
       </el-menu>
       <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router v-show="isAdmin">
         <el-menu-item index="1" route="/course">查看课程</el-menu-item>
-        <el-menu-item index="2" route="/">管理教师</el-menu-item>
-        <el-menu-item index="3" route="/home">管理学生</el-menu-item>
+        <el-menu-item index="2" route="/tmanage">管理教师</el-menu-item>
+        <el-menu-item index="3" route="/smanage">管理学生</el-menu-item>
         <el-menu-item index="4" route="/cmanage">管理课程</el-menu-item>
       </el-menu>
     </el-header>
