@@ -12,7 +12,7 @@
         <el-table-column prop="StudentName" label="学生名" width="150"></el-table-column>
         <el-table-column prop="Department" label="院系" width="100"></el-table-column>
         <el-table-column align="right">
-          <template slot="header" scope="scope"><el-input v-model="search" size="mini" placeholder="输入关键字搜索"/></template>
+          <template slot="header"><el-input v-model="search" size="mini" placeholder="输入关键字搜索"/></template>
           <template>
             <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
             <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
@@ -31,26 +31,26 @@ export default {
       SearchStudentId: '',
       search: '',
       CourseData: [{
-        StudentID:'10000000',
+        StudentID: '10000000',
         StudentName: '张珂昕',
         Department: '计算机学院'
       }, {
-        StudentID:'10000001',
+        StudentID: '10000001',
         StudentName: '许尉',
         Department: '计算机学院'
       }, {
-        StudentID:'10000002',
+        StudentID: '10000002',
         StudentName: '李四',
         Department: '通信学院'
       }, {
-        StudentID:'10000013',
+        StudentID: '10000013',
         StudentName: '刘钊钊',
         Department: '计算机学院'
       }]
     }
   },
   methods: {
-    SearchStudent() {
+    SearchStudent () {
       this.$message('这里查询数据库！！！')
     },
     handleEdit (index, row) {

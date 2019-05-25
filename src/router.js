@@ -51,6 +51,11 @@ export default new Router({
       component: () => import('./views/Smanage.vue')
     },
     {
+      path: '/allcourse',
+      name: 'allcourse',
+      component: () => import('./views/Allcourse.vue')
+    },
+    {
       path: '/login',
       name: 'login',
       // route level code-splitting

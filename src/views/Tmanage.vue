@@ -12,7 +12,7 @@
         <el-table-column prop="TeacherName" label="教师名" width="150"></el-table-column>
         <el-table-column prop="Department" label="院系" width="100"></el-table-column>
         <el-table-column align="right">
-          <template slot="header" scope="scope"><el-input v-model="search" size="mini" placeholder="输入关键字搜索"/></template>
+          <template slot="header"><el-input v-model="search" size="mini" placeholder="输入关键字搜索"/></template>
           <template>
             <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
             <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
@@ -31,22 +31,22 @@ export default {
       SearchTeacherID: '',
       search: '',
       CourseData: [{
-        TeacherID:'10000000',
+        TeacherID: '10000000',
         TeacherName: '丁学海',
         Department: '计算机学院'
       },
       {
-        TeacherID:'10000001',
+        TeacherID: '10000001',
         TeacherName: '朱颖',
         Department: '计算机学院'
       },
       {
-        TeacherID:'10000002',
+        TeacherID: '10000002',
         TeacherName: '陆晓峰',
         Department: '通信学院'
       },
       {
-        TeacherID:'10000013',
+        TeacherID: '10000013',
         TeacherName: '王艺璇',
         Department: '计算机学院'
       }]
