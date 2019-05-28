@@ -50,6 +50,7 @@ export default {
   methods: {
     login () {
       console.log('要登录了！')
+      localStorage.setItem('isLogin', true)
     }
   }
 }

@@ -41,11 +41,6 @@ export default new Router({
       component: () => import('./views/Cmanage.vue')
     },
     {
-      path: '/tmanage',
-      name: 'tmanage',
-      component: () => import('./views/Tmanage.vue')
-    },
-    {
       path: '/smanage',
       name: 'smanage',
       component: () => import('./views/Smanage.vue')

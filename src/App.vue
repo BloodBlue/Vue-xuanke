@@ -10,8 +10,8 @@
       </el-menu>
       <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router v-show="isTeacher">
         <el-menu-item index="1" route="/tcourse">查看课程</el-menu-item>
-        <el-menu-item index="2" route="/cmanage">管理课程</el-menu-item>
         <el-menu-item index="3" route="/grade">录入成绩</el-menu-item>
+        <p style="color: white;">学号:{{this.isAdmin}}</p>
       </el-menu>
       <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router v-show="isAdmin">
         <el-menu-item index="1" route="/allcourse">查看课程</el-menu-item>
@@ -29,9 +29,10 @@ export default {
   name: 'App',
   data () {
     return {
+      // isLogin: JSON.parse(localStorage.getItem('isLogin')),
       isLogin: true,
-      isStudent: true,
-      isTeacher: false,
+      isStudent: false,
+      isTeacher: true,
       isAdmin: false
     }
   }
