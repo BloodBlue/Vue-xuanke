@@ -1,21 +1,27 @@
 <template>
   <div style="width:100%">
-    <div class="course">
+    <div style="width: 755px;margin: 0 auto;">
       <br/>
       <div class="searchForm">
         <span style="margin-right: 10px; font-size: 13px;">学号 </span>
         <el-input v-model="SearchStudentId" placeholder="请输入学号" style="width: 10vw;margin-right: 30px"></el-input>
         <el-button @click="SearchStudent()" style="width: 10vw margin-left: 2vw">查询</el-button>
       </div>
-      <el-table :data="CourseData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))" style="width: 100%">
-        <el-table-column prop="StudentID" label="学号" width="100"></el-table-column>
-        <el-table-column prop="StudentName" label="学生名" width="150"></el-table-column>
-        <el-table-column prop="Department" label="院系" width="100"></el-table-column>
-        <el-table-column align="right">
-          <template slot="header"><el-input v-model="search" size="mini" placeholder="输入关键字搜索"/></template>
-          <template>
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-            <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+      <el-table :data="StudentData" style="width: 755px">
+        <el-table-column prop="student_no" label="学号" width="50"></el-table-column>
+        <el-table-column prop="student_name" label="学生名" width="70"></el-table-column>
+        <el-table-column prop="sex" label="性别" width="50"></el-table-column>
+        <el-table-column prop="birth" label="出生日期" width="170"></el-table-column>
+        <el-table-column prop="jiguan" label="籍贯" width="80"></el-table-column>
+        <el-table-column prop="phone" label="联系方式" width="135">
+          <template slot-scope="scope">
+            <el-input v-if="editingPropId == scope.$index" size="small" v-model="scope.row.phone" @change="Edit(scope.$index, scope.row)"></el-input> <span @click="Edit(scope.$index, scope.row)" v-if="editingPropId !== scope.$index">{{scope.row.phone}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="yuan" label="院系" width="100"></el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">保存</el-button>
           </template>
          </el-table-column>
       </el-table>
@@ -25,39 +31,71 @@
 
 <script>
 export default {
-
+  name: 'smanage',
   data () {
     return {
+      editingPropId: -1,
       SearchStudentId: '',
-      search: '',
-      CourseData: [{
-        StudentID: '10000000',
-        StudentName: '张珂昕',
-        Department: '计算机学院'
-      }, {
-        StudentID: '10000001',
-        StudentName: '许尉',
-        Department: '计算机学院'
-      }, {
-        StudentID: '10000002',
-        StudentName: '李四',
-        Department: '通信学院'
-      }, {
-        StudentID: '10000013',
-        StudentName: '刘钊钊',
-        Department: '计算机学院'
-      }]
+      StudentData: []
     }
   },
+  created () {
+    this.GetStudent()
+  },
   methods: {
+    GetStudent () {
+      this.$ajax({
+        method: 'GET',
+        url: '/Admin/student'
+      })
+        .then(response => {
+          console.log(response)
+          this.StudentData = response.data.data.student
+        })
+    },
     SearchStudent () {
-      this.$message('这里查询数据库！！！')
+      if (this.SearchStudentId === '') {
+        this.GetStudent()
+      } else {
+        let formdata = new FormData()
+        formdata.append('student_no', this.SearchStudentId)
+        this.$ajax({
+          method: 'POST',
+          url: '/Admin/student',
+          data: formdata
+        })
+          .then(response => {
+            if (response.data.status === 200) {
+              this.StudentData = response.data.data.student
+            } else {
+              this.$message(response.data.msg)
+              this.StudentData = []
+            }
+          })
+      }
+    },
+    Edit (index, row) {
+      this.editingPropId = index
     },
     handleEdit (index, row) {
-      console.log(index, row)
-    },
-    handleDelete (index, row) {
-      console.log(index, row)
+      let formdata = new FormData()
+      formdata.append('student_no', row.student_no)
+      formdata.append('phone', row.phone)
+      this.$ajax({
+        method: 'POST',
+        url: '/Admin/change',
+        data: formdata
+      })
+        .then(response => {
+          if (response.data.status === 200) {
+            this.$message({
+              message: response.data.msg,
+              type: 'success'
+            })
+          } else {
+            this.$message('数据库修改失败！')
+          }
+        })
     }
   }
 }

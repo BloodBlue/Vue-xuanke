@@ -36,14 +36,14 @@ export default new Router({
       component: () => import('./views/FastDelete.vue')
     },
     {
-      path: '/cmanage',
-      name: 'cmanage',
-      component: () => import('./views/Cmanage.vue')
-    },
-    {
       path: '/smanage',
       name: 'smanage',
       component: () => import('./views/Smanage.vue')
+    },
+    {
+      path: '/tmanage',
+      name: 'tmanage',
+      component: () => import('./views/Tmanage.vue')
     },
     {
       path: '/allcourse',

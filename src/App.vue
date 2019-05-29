@@ -11,13 +11,13 @@
       <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router v-show="isTeacher">
         <el-menu-item index="1" route="/tcourse">查看课程</el-menu-item>
         <el-menu-item index="3" route="/grade">录入成绩</el-menu-item>
-        <p style="color: white;">学号:{{this.isAdmin}}</p>
+        <p style="color: white;">教师:{{this.isAdmin}}</p>
       </el-menu>
       <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router v-show="isAdmin">
-        <el-menu-item index="1" route="/allcourse">查看课程</el-menu-item>
+        <el-menu-item index="1" route="/allcourse">管理课程</el-menu-item>
         <el-menu-item index="2" route="/tmanage">管理教师</el-menu-item>
         <el-menu-item index="3" route="/smanage">管理学生</el-menu-item>
-        <el-menu-item index="4" route="/cmanage">管理课程</el-menu-item>
+        <p style="color: white;">管理员:{{this.isAdmin}}</p>
       </el-menu>
     </el-header>
     <router-view/>
@@ -32,8 +32,8 @@ export default {
       // isLogin: JSON.parse(localStorage.getItem('isLogin')),
       isLogin: true,
       isStudent: false,
-      isTeacher: true,
-      isAdmin: false
+      isTeacher: false,
+      isAdmin: true
     }
   }
 }
