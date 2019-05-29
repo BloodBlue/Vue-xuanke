@@ -9,8 +9,8 @@
       </el-table>
     </div>
     <br/>
-    <el-button @click="drawBar()" v-show="!isclick">查看成绩直方图</el-button>
-    <div v-show="isclick"><hr/>
+    <el-button @click="drawBar()" v-show="isbutton">查看成绩直方图</el-button>
+    <div v-show="isshow"><hr/>
     <div id="scoreBar" :style="{width: '400px', height: '300px'}"></div>
     </div>
   </div>
@@ -22,26 +22,25 @@ export default {
   name: 'tcourse',
   data () {
     return {
-      isclick: false,
+      isbutton: true,
+      isshow: false,
+      teacher: localStorage.getItem('user'),
       GradeData: [],
       CourseName: [],
       Grade: []
     }
   },
-  beforeMount () {
-    this.GetData()
-  },
   methods: {
     GetData () {
+      console.log(this.teacher)
       this.$ajax({
         method: 'GET',
         url: '/Teacher/course',
-        params: { teacher_no: '0102' }
+        params: { teacher_no: this.teacher }
       })
         .then(response => {
           var course = response.data.data.course
           this.GradeData = course
-          console.log(course)
           var Xlabel = []
           var Ylabel = []
           for (var item in course) {
@@ -53,7 +52,8 @@ export default {
         })
     },
     drawBar () {
-      this.isclick = true
+      this.isbutton = false
+      this.isshow = true
       // 基于准备好的dom，初始化echarts实例
       let myChart = this.$echarts.init(document.getElementById('scoreBar'))
       // 绘制图表
@@ -71,6 +71,9 @@ export default {
         }]
       })
     }
+  },
+  created () {
+    this.GetData()
   }
 }
 </script>

@@ -40,6 +40,7 @@ export default {
     return {
       isAvailable: false,
       term: '',
+      student: JSON.parse(localStorage.getItem('user')),
       SearchCourseID: '',
       Selectlist: [
         { value: '2012-2013 冬季', label: '2012-2013 冬季' },
@@ -81,12 +82,10 @@ export default {
         })
     },
     SubmitChoise (row) {
-      console.log(row.course_no)
-      console.log(row.teacher_no)
       let formdata = new FormData()
       formdata.append('course_no', row.course_no)
       formdata.append('term', this.term)
-      formdata.append('student_id', '1102')
+      formdata.append('student_id', this.student)
       formdata.append('teacher_id', row.teacher_no)
       this.$ajax({
         method: 'POST',

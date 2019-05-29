@@ -34,6 +34,7 @@ export default {
       isAvailable: false,
       SearchCourseID: '',
       term: '',
+      student: localStorage.getItem('user'),
       Selectlist: [
         { value: '2012-2013 冬季', label: '2012-2013 冬季' },
         { value: '2012-2013 秋季', label: '2012-2013 秋季' },
@@ -48,10 +49,9 @@ export default {
       this.$ajax({
         method: 'GET',
         url: '/Student/Delete',
-        params: { student_no: '1102', term: this.term }
+        params: { student_no: this.student, term: this.term }
       })
         .then(response => {
-          console.log(response)
           if (response.data.status === 200) {
             this.courseData = response.data.data.selected
             this.isAvailable = false
@@ -65,7 +65,7 @@ export default {
       formdata.append('course_no', row.course_no)
       formdata.append('teacher_no', row.teacher_no)
       formdata.append('term', this.term)
-      formdata.append('student_no', '1102')
+      formdata.append('student_no', this.student)
       this.$ajax({
         method: 'POST',
         url: '/Student/Delete',
@@ -81,7 +81,6 @@ export default {
             this.$message(response.data.msg)
           }
         })
-      console.log(this.term)
     }
   }
 }

@@ -22,31 +22,25 @@ export default {
   name: 'transcript',
   data () {
     return {
+      student: JSON.parse(localStorage.getItem('user')),
       GradeData: [],
       Xdata: [],
-      Ydata: [],
-      searchList: [{
-        courseId: '',
-        courseName: ''
-      }]
+      Ydata: []
     }
   },
-  mounted () {
-    this.test()
-  },
   created () {
+    this.test()
   },
   methods: {
     test () {
       this.$ajax({
         method: 'GET',
         url: '/Student/Script',
-        params: { student_id: '1102' }
+        params: { student_id: this.student }
       })
         .then(response => {
           var scores = response.data.data.scores
           this.GradeData = scores
-          console.log(scores)
           var Xlabel = []
           var Ylabel = []
           for (var item in scores) {

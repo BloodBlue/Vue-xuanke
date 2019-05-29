@@ -68,7 +68,6 @@ export default {
         data: formdata
       })
         .then(response => {
-          console.log(response)
           var teacher = response.data.data.teacher
           this.TeacherData = teacher
         })

@@ -44,6 +44,7 @@ export default {
     return {
       SearchCourseID: '',
       courseName: '',
+      teacher: localStorage.getItem('user'),
       term: '',
       editingPropId: -1,
       options: [],
@@ -56,21 +57,20 @@ export default {
   methods: {
     GetTerm () {
       let formdata = new FormData()
-      formdata.append('teacher_no', '0101')
+      formdata.append('teacher_no', this.teacher)
       this.$ajax({
         method: 'POST',
         url: '/Teacher/course',
         data: formdata
       })
         .then(response => {
-          console.log(response)
           this.options = response.data.data.course
           this.term = response.data.data.term
         })
     },
     SearchCourse () {
       let formdata = new FormData()
-      formdata.append('teacher_no', '0101')
+      formdata.append('teacher_no', this.teacher)
       formdata.append('term', this.term)
       formdata.append('course_name', this.courseName)
       this.$ajax({
@@ -79,7 +79,6 @@ export default {
         data: formdata
       })
         .then(response => {
-          console.log(response)
           this.CourseData = response.data.data.CourseData
         })
     },
@@ -91,7 +90,7 @@ export default {
       this.$ajax({
         method: 'GET',
         url: '/Teacher/grade',
-        params: { teacher_no: '0101',
+        params: { teacher_no: this.teacher,
           term: this.term,
           course_name: this.courseName,
           student_no: row.student_no,
