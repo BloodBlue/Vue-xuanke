@@ -11,7 +11,7 @@
           </el-form-item>
           <el-form-item prop="passWord">
             <i class="iconfont" style="font-size: 28px; font-weight: bold;">&#xe665; </i>
-            <el-input v-model="loginForm.passWord" placeholder="请输入密码" style="width:200px"></el-input>
+            <el-input type="password" v-model="loginForm.passWord" placeholder="请输入密码" style="width:200px"></el-input>
           </el-form-item>
         </el-form>
         <el-button @click="login()" style="width:130px" type="primary" plain>

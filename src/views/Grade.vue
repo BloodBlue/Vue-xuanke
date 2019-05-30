@@ -2,6 +2,7 @@
   <div style="width:100%">
     <div class="course">
       <br/>
+      <p>当前为：{{term}}</p>
       <div class="search">
         <el-form ref="searchList" label-width="80px">
           <el-form-item label="课程名" style="float: left">
@@ -98,7 +99,10 @@ export default {
           grade: row.grade }
       })
         .then(response => {
-          console.log(response)
+          this.$message({
+            message: response.data.msg,
+            type: 'success'
+          })
         })
     }
   }
